@@ -1,37 +1,31 @@
-document.getElementById("search-input").addEventListener("input", function() {
-    const input = this.value.toLowerCase().trim();
-    const shops = document.querySelectorAll(".shop-card");
-    let found = false;
 
-    shops.forEach(shop => {
-        const shopName = shop.querySelector("h3").textContent.toLowerCase();
-        if (shopName.includes(input)) {
-            shop.style.display = "block"; // 🔥 Показываем подходящий магазин
-            found = true;
-        } else {
-            shop.style.display = "none"; // ❌ Скрываем магазины, которые не совпадают
-        }
-    });
+  // Застосування стилів
+  function applyStyles() {
+  const bgColor = document.getElementById('bgColorPicker').value;
+  const fontSize = document.getElementById('fontSizePicker').value;
 
-    document.getElementById("not-found-message").classList.toggle("hidden", found);
-});
-
-function searchShop() {
-    const input = document.getElementById("search-input").value.toLowerCase().trim();
-    const shops = document.querySelectorAll(".shop-card");
-    let found = false;
-
-    shops.forEach(shop => {
-        const shopName = shop.querySelector("h3").textContent.toLowerCase();
-        if (shopName.includes(input)) {
-            window.location.href = shop.querySelector("a").href; // 🔥 Переход на страницу магазина
-            found = true;
-        }
-    });
-
-    if (!found) {
-        const notFoundMessage = document.getElementById("not-found-message");
-        notFoundMessage.classList.remove("hidden");
-        setTimeout(() => notFoundMessage.classList.add("hidden"), 3000);
-    }
+  document.body.style.background = bgColor; // Замість backgroundColor
+  document.body.style.fontSize = fontSize + 'px';
 }
+
+
+  // 📦 API – Завантаження користувачів
+  function loadUsers() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('userList');
+        list.innerHTML = ''; // очищення перед оновленням
+
+        data.forEach(user => {
+          const li = document.createElement('li');
+          li.textContent = `${user.name} – ${user.email}`;
+          list.appendChild(li);
+        });
+      })
+      .catch(error => {
+        console.error('Помилка при завантаженні:', error);
+        document.getElementById('userList').innerHTML = '<li>Помилка при завантаженні даних.</li>';
+      });
+  }
+

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/shop.css">
-    <link rel="stylesheet" href="styles/slideshow.css">
 </head>
 
 <body>
@@ -23,14 +22,11 @@
     <a href="login.html" class="shop-button">Приєднатися</a>
 </section>
 
-<section class="slideshow-container">
-    <div class="slide fade"><img src="images/photo1.jpg" alt="Картинка 1"></div>
-    <div class="slide fade"><img src="images/photo2.jpg" alt="Картинка 2"></div>
-    <div class="slide fade"><img src="images/photo3.jpg" alt="Картинка 3"></div>
-</section>
+
 
 
 <section class="search-container">
+    
     <input type="text" id="search-input" placeholder="🔍 Введіть назву магазину...">
     <button onclick="searchShop()">Шукати</button>
 </section>
@@ -143,6 +139,26 @@
         </div>
         
     </section>
+
+    <section class="container style-panel">
+        <h2>🎨 Панель стилів</h2>
+        <div class="style-controls">
+            <label>Колір фону:
+            <input type="color" id="bgColorPicker">
+            </label>
+            <label>Розмір шрифту:
+            <input type="number" id="fontSizePicker" value="16" min="10" max="40"> px
+            </label>
+            <button onclick="applyStyles()">Застосувати</button>
+        </div>
+    </section>
+
+    <section class="container api-section">
+        <h2>📦 Дані з API</h2>
+        <button onclick="loadUsers()">Завантажити користувачів</button>
+        <ul id="userList"></ul>
+    </section>
+
 
     <!-- 🔹 Футер -->
     <footer>
